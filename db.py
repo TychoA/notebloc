@@ -26,5 +26,5 @@ if __name__ == "__main__":
     # create the table for the first time
     connection = sqlite3.connect("notebloc.db")
     cursor = connection.cursor()
-    cursor.execute("DROP TABLE notes")
+    # cursor.execute("DROP TABLE notes")
     cursor.execute("CREATE TABLE notes (name TEXT, note TEXT)")
