@@ -12,6 +12,21 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/note', methods=['GET'])
+def note():
+
+    # create a new database handler
+    db = Database()
+
+    # get the post data
+    data = request.get_json()
+
+    # get the note
+    if 'id' not in data:
+        # throw an error
+        pass
+    return jsonify(db.get_note(data['id']))
+
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
 
