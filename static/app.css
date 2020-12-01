@@ -16,7 +16,7 @@ body,html
 .app
 {
     display: grid;
-    grid-template-rows: 4rem 1fr;
+    grid-template-rows: auto 1fr;
     padding: 1rem;
 }
 
@@ -27,12 +27,17 @@ body,html
 
 .toolbar button
 {
+    border: none;
+    outline: none;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    font-family: 'Roboto Slab', monospace;
     cursor: pointer;
     border: none;
     outline: none;
     padding: 0.5rem 1rem;
     border-radius: .2rem;
-    font-size: 1.2rem;
     background-color: #333333;
     color: white;
     font-weight: bold;
@@ -56,9 +61,10 @@ body,html
     grid-template-columns: repeat(auto-fit, 20rem);
     grid-auto-rows: 20rem;
     grid-gap: 1rem;
+    margin: 1rem 0;
 }
 
-.preview
+.preview, .preview-new
 {
     background-color: white;
     border-radius: .2rem;
@@ -67,6 +73,16 @@ body,html
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.preview-new
+{
+    background-color: #333;
+    color: white;
+}
+
+.preview
+{
     filter: blur(.2rem);
     transition: filter .15s ease-in-out;
 }
@@ -74,4 +90,15 @@ body,html
 .preview:hover
 {
     filter: blur(0);
+}
+
+input
+{
+    margin: 1rem 0;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    font-family: 'Roboto Slab', monospace;
 }

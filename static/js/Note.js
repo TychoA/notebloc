@@ -56,6 +56,11 @@ export class Note {
      */
     load() {
 
+        // if there's no note, resolve immediately
+        if (!this.#id) return new Promise((resolve) => {
+            resolve();
+        });
+
         // fetch this note
         return fetch('/note?id=' + this.#id).then(async (response) => {
 
@@ -97,7 +102,7 @@ export class Note {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id, note })
+            body: JSON.stringify({ id, name, note })
 
         // handle success
         }).then((success) => {

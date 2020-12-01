@@ -19,9 +19,24 @@ export class Editor {
      */
     constructor(parentElement, noteId) {
 
-        // create a textarea
+        // the container
         this.#container = parentElement.appendChild(document.createElement('div'));
-        this.#container.classList.add('editor');
+
+        // add a field for setting the name
+        const nameField = this.#container.appendChild(document.createElement('input'));
+        nameField.setAttribute('placeholder', 'Enter a name (e.g. MyNote)');
+
+        // listen to changes
+        nameField.addEventListener('change', () => {
+
+            // set the name and save the note
+            note.setName(nameField.value);
+            note.save();
+        });
+
+        // create a textarea
+        const textarea = this.#container.appendChild(document.createElement('div'));
+        textarea.classList.add('editor');
 
         // create the note handler
         const note = new Note(noteId);
@@ -44,6 +59,7 @@ export class Editor {
             note.load().then(() => {
 
                 // set the content on the editor
+                nameField.value = note.getName();
                 editor.html.set(note.getContent());
             });
         });

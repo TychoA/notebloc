@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
         notes.onclick((data) => {
 
             // install an editor
-            app.show(Editor, data[0]);
+            app.show(Editor, data ? data[0] : undefined);
         });
     };
 

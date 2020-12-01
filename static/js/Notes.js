@@ -36,6 +36,17 @@ export class Notes {
                 this.#callback(data);
             };
 
+            // create a preview
+            const preview = this.#container.appendChild(document.createElement('div'));
+            preview.classList.add('preview-new');
+
+            // add the name
+            const name = preview.appendChild(document.createElement('h1'));
+            name.textContent = '+ create new note';
+
+            // listen to clicks on the preview
+            preview.addEventListener('click', click());
+
             // add all notes
             for (let note of data) {
 
