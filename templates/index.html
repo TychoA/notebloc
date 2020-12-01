@@ -3,8 +3,14 @@
     <head>
         <title>Notebloc</title>
 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
         <link href="{{ url_for('static', filename='node_modules/froala-editor/css/froala_editor.pkgd.min.css') }}" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="{{ url_for('static', filename='node_modules/froala-editor/js/froala_editor.pkgd.min.js') }}"></script>
+
+        <link href="{{ url_for('static', filename='node_modules/alertifyjs/build/css/alertify.min.css') }}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{{ url_for('static', filename='node_modules/alertifyjs/build/alertify.min.js') }}"></script>
 
         <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}"></script>
         <script type="module" src="{{ url_for('static', filename='app.js') }}"></script>

@@ -8,15 +8,18 @@ class Database(object):
 
     def add_note(self, name, note):
         self._cursor.execute("INSERT INTO notes VALUES (?, ?)", (name, note))
+        self._connection.commit()
 
     def set_note(self, id, name, note):
         self._cursor.execute("UPDATE notes SET name = ?, note = ? WHERE rowid = ?", (name, note, id))
+        self._connection.commit()
 
     def delete_note(self, id):
         self._cursor.execute("DELETE FROM notes WHERE rowid = ?", (id,))
+        self._connection.commit()
 
     def get_note(self, id):
-        return self._cursor.execute("SELECT name, note FROM notes WHERE rowid = ?", (id, )).fetchall()
+        return self._cursor.execute("SELECT name, note FROM notes WHERE rowid = ?", (id, )).fetchone()
 
     def get_notes(self):
         return self._cursor.execute("SELECT rowid, name, note FROM notes").fetchall()

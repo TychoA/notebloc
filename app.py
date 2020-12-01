@@ -12,20 +12,34 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/note', methods=['GET'])
+@app.route('/note', methods=['GET', 'PUT'])
 def note():
 
     # create a new database handler
     db = Database()
 
-    # get the post data
-    data = request.get_json()
+    # handle get request
+    if request.method == "GET":
 
-    # get the note
-    if 'id' not in data:
-        # throw an error
-        pass
-    return jsonify(db.get_note(data['id']))
+        # expose the note
+        return jsonify(db.get_note(request.args.get('id')))
+
+    # handle put request
+    if request.method == "PUT":
+
+        # get the post data and the note
+        data = request.get_json()
+        note = db.get_note(data['id'])
+
+        # update the note
+        db.set_note(
+            data['id'],
+            data['name'] if 'name' in data else note[0],
+            data['note'] if 'note' in data else note[1]
+        )
+
+        # inform the client about the success
+        return jsonify(True)
 
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
@@ -39,20 +53,18 @@ def notes():
 
     # handle post request
     if request.method == "POST":
+
+        # get the post data
         data = request.get_json()
-        note = ''
-
-        # we need a name
-        if 'name' not in data:
-            # throw an error
-            pass
-
-        # update the note
-        if 'note' in data:
-            note = data['note']
 
         # create a new note
-        db.add_note(data['name'], note)
+        db.add_note(
+            data['name'] if 'name' in data else '',
+            data['note'] if 'note' in data else ''
+        )
+
+        # and expose the last note's id
+        return jsonify(db.get_notes()[-1][0])
 
 def open_browser():
     webbrowser.open_new(f'http://127.0.0.1:{port}/')

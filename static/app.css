@@ -3,16 +3,75 @@ body,html
     height: 100%;
     width:  100%;
     margin: 0;
+    font-family: 'Roboto Slab', serif;
 }
 
 #app
 {
     height: 100%;
     width:  100%;
+    background-color: #efefef;
+}
+
+.app
+{
+    display: grid;
+    grid-template-rows: 4rem 1fr;
+    padding: 1rem;
+}
+
+.toolbar
+{
+    align-self: center;
+}
+
+.toolbar button
+{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: .2rem;
+    font-size: 1.2rem;
+    background-color: #333333;
+    color: white;
+    font-weight: bold;
+    transition: filter .15s ease-in-out;
+}
+
+.toolbar button:hover
+{
+    filter: opacity(0.9);
 }
 
 .editor
 {
     height: 100%;
     width:  100%;
+}
+
+.notes
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    grid-auto-rows: 20rem;
+    grid-gap: 1rem;
+}
+
+.preview
+{
+    background-color: white;
+    border-radius: .2rem;
+    border: 1px solid #ddd;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    filter: blur(.2rem);
+    transition: filter .15s ease-in-out;
+}
+
+.preview:hover
+{
+    filter: blur(0);
 }
