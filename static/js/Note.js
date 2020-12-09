@@ -78,11 +78,8 @@ export class Note {
      */
     save() {
 
-        // if there's an id, we can update
-        if (this.#id) this.#update();
-
-        // otherwise, create a new note
-        else this.#store();
+        // If there's an id, update the note, otherwise store it
+        return this.#id ? this.#update() : this.#store();
     }
 
     /**
@@ -103,16 +100,7 @@ export class Note {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id, name, note })
-
-        // handle success
-        }).then((success) => {
-
-            // inform the client
-            if (success) alertify.notify('Saved', 'success', 3);
-            else alertify.notify('Could not be saved', 'error', 3);
-
-        // handle error
-        }, () => void alertify.notify('Could not be saved', 'error', 3));
+        });
     }
 
     /**
@@ -134,15 +122,10 @@ export class Note {
             }
 
         // handle success
-        }).then((id) => {
+        }).then(async (response) => {
 
-            // inform the user and expose the id
-            alertify.notify('Saved', 'success', 3);
-
-            // update our id
-            this.#id = id;
-
-        // handle error
-        }, () => void alertify.notify('Could not be saved', 'error', 3));
+            // Set the id
+            this.#id = await response.json();
+        });
     }
 }

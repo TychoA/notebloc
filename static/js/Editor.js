@@ -2,6 +2,7 @@
  *  Dependencies.
  */
 import { Note } from './Note.js';
+import { throttle } from './throttle.js';
 
 /**
  *  Class definition.
@@ -45,10 +46,10 @@ export class Editor {
         const editor = new FroalaEditor('.editor', {
             height: '90%',
             events: {
-                'contentChanged': function() {
-                    note.setContent(this.html.get());
+                'contentChanged': throttle(() => {
+                    note.setContent(editor.html.get());
                     note.save();
-                },
+                }, 1000),
             }
         // initialization callback
         }, function() {
