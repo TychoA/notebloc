@@ -47,10 +47,8 @@ export class Editor {
             events: {
                 'contentChanged': function() {
                     note.setContent(this.html.get());
+                    note.save();
                 },
-                'keydown': function(event) {
-                    if (event.key == 's' && event.ctrlKey) note.save();
-                }
             }
         // initialization callback
         }, function() {

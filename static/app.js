@@ -2,6 +2,7 @@
 import { Editor } from './js/Editor.js';
 import { Notes } from './js/Notes.js';
 import { App } from './js/App.js';
+import { throttle } from './js/throttle.js';
 
 // wait for the document to load
 window.addEventListener('load', function() {
