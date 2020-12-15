@@ -41,7 +41,7 @@ def note():
         # inform the client about the success
         return jsonify(True)
 
-@app.route('/notes', methods=['GET', 'POST'])
+@app.route('/notes', methods=['GET', 'POST', 'DELETE'])
 def notes():
 
     # create a new database handler
@@ -65,6 +65,16 @@ def notes():
 
         # and expose the last note's id
         return jsonify(db.get_notes()[-1][0])
+
+    # Handle delete request
+    if request.method == 'DELETE':
+
+        # Get the delete data
+        data = request.get_json()
+
+        # Delete the found note
+        db.delete_note(data['id'])
+        return ('', 204)
 
 def open_browser():
     webbrowser.open_new(f'http://127.0.0.1:{port}/')

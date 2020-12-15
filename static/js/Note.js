@@ -75,6 +75,7 @@ export class Note {
 
     /**
      *  Method to save this note.
+     *  @return Promise
      */
     save() {
 
@@ -83,7 +84,37 @@ export class Note {
     }
 
     /**
+     *  Method to delete this note.
+     *  @return Promise
+     */
+    delete() {
+
+        // If there's no id, it was a success, otherwise delete it
+        return this.#id ? this.#delete() : new Promise((resolve) => {
+            resolve();
+        });
+    }
+
+    /**
+     *  Method to delete an existing note.
+     *  @return Promise
+     */
+    #delete() {
+
+        // request to store the html
+        return fetch('/notes', {
+            method: 'DELETE',
+            body: JSON.stringify({ id: this.#id }),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    /**
      *  Method to update this note as an existing note.
+     *  @return Promise
      */
     #update() {
 
@@ -105,6 +136,7 @@ export class Note {
 
     /**
      *  Method to store this note as a new note.
+     *  @return Promise
      */
     #store() {
 

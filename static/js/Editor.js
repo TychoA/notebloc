@@ -1,16 +1,16 @@
 /**
  *  Dependencies.
  */
+import { Component } from './Component.js';
 import { Note } from './Note.js';
 import { throttle } from './throttle.js';
 
 /**
  *  Class definition.
  */
-export class Editor {
+export class Editor extends Component {
 
     // private members
-    #container;
     #editor;
 
     /**
@@ -20,11 +20,11 @@ export class Editor {
      */
     constructor(parentElement, noteId) {
 
-        // the container
-        this.#container = parentElement.appendChild(document.createElement('div'));
+        // Call the parent
+        super(parentElement);
 
-        // add a field for setting the name
-        const nameField = this.#container.appendChild(document.createElement('input'));
+        // Add a field for setting the name
+        const nameField = this.el.appendChild(document.createElement('input'));
         nameField.setAttribute('placeholder', 'Enter a name (e.g. MyNote)');
 
         // listen to changes
@@ -35,8 +35,19 @@ export class Editor {
             note.save();
         });
 
+        // Add a button to remove this note
+        const removeButton = this.el.appendChild(document.createElement('button'));
+        removeButton.textContent = 'Delete this note'
+
+        // Listen to when the user wants to remove it
+        removeButton.addEventListener('click', () => {
+
+            // Delete the note
+            note.delete().then(alert);
+        });
+
         // create a textarea
-        const textarea = this.#container.appendChild(document.createElement('div'));
+        const textarea = this.el.appendChild(document.createElement('div'));
         textarea.classList.add('editor');
 
         // create the note handler
@@ -62,12 +73,5 @@ export class Editor {
                 editor.html.set(note.getContent());
             });
         });
-    }
-
-    /**
-     *  Cleanup.
-     */
-    remove() {
-        this.#container.remove();
     }
 };
