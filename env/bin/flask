@@ -1,4 +1,4 @@
-#!/home/tycho/workspace/repos/notebloc/env/bin/python3
+#!/home/tycho/workspace/repos/notebloc/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

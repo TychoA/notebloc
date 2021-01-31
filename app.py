@@ -6,10 +6,11 @@ from db import Database
 # set up flask app
 from flask import Flask, render_template, jsonify, request
 port = 5000
-app = Flask(__name__)
+app = Flask(__name__, static_folder='app', static_url_path='/app')
 
-@app.route('/')
-def index():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     return render_template('index.html')
 
 @app.route('/note', methods=['GET', 'PUT'])
@@ -83,5 +84,5 @@ def open_browser():
 if __name__ == "__main__":
 
     # open the browser and start the app
-    Timer(1, open_browser).start()
+    # Timer(1, open_browser).start()
     app.run(port=port)
