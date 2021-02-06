@@ -20,7 +20,7 @@ export class Notes {
         this.#container.classList.add('notes');
 
         // load all notes
-        fetch('/notes').then(async (response) => {
+        fetch('/api/notes').then(async (response) => {
 
             // get the notes
             const data = await response.json();
@@ -54,6 +54,9 @@ export class Notes {
                 const name = preview.appendChild(document.createElement('h1'));
                 name.textContent = note[1];
             }
+
+            // Make sure all the links work
+            router.updatePageLinks();
         });
     }
 

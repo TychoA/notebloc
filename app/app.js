@@ -31,7 +31,9 @@ window.addEventListener('load', function() {
     // Install the single note route
     router.on('/note/:id', (params) => {
 
-        console.log(params);
+        // Show the editor
+        app.show(Editor, params.id);
+        router.updatePageLinks();
     });
 
     // Resolve the router

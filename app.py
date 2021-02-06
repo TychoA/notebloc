@@ -13,7 +13,7 @@ app = Flask(__name__, static_folder='app', static_url_path='/app')
 def catch_all(path):
     return render_template('index.html')
 
-@app.route('/note', methods=['GET', 'PUT'])
+@app.route('/api/note', methods=['GET', 'PUT'])
 def note():
 
     # create a new database handler
@@ -42,7 +42,7 @@ def note():
         # inform the client about the success
         return jsonify(True)
 
-@app.route('/notes', methods=['GET', 'POST', 'DELETE'])
+@app.route('/api/notes', methods=['GET', 'POST', 'DELETE'])
 def notes():
 
     # create a new database handler

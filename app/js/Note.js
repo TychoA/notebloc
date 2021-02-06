@@ -62,7 +62,7 @@ export class Note {
         });
 
         // fetch this note
-        return fetch('/note?id=' + this.#id).then(async (response) => {
+        return fetch('/api/note?id=' + this.#id).then(async (response) => {
 
             // get the data
             const data = await response.json();
@@ -102,7 +102,7 @@ export class Note {
     #delete() {
 
         // request to store the html
-        return fetch('/notes', {
+        return fetch('/api/notes', {
             method: 'DELETE',
             body: JSON.stringify({ id: this.#id }),
             headers: {
@@ -124,7 +124,7 @@ export class Note {
             note = this.#content;
 
         // request to store the html
-        return fetch('/note', {
+        return fetch('/api/note', {
             method: 'PUT',
             headers: {
               'Accept': 'application/json',
@@ -145,7 +145,7 @@ export class Note {
         const note = this.#content;
 
         // request to store the html
-        return fetch('/notes', {
+        return fetch('/api/notes', {
             method: 'POST',
             body: JSON.stringify({ name, note }),
             headers: {
