@@ -23,8 +23,12 @@ export class Editor extends Component {
         // Call the parent
         super(parentElement);
 
+        // Row of tools for the name input and removal button
+        const tools = this.el.appendChild(document.createElement('div'));
+        tools.classList.add('tools');
+
         // Add a field for setting the name
-        const nameField = this.el.appendChild(document.createElement('input'));
+        const nameField = tools.appendChild(document.createElement('input'));
         nameField.setAttribute('placeholder', 'Enter a name (e.g. MyNote)');
 
         // listen to changes
@@ -36,9 +40,8 @@ export class Editor extends Component {
         });
 
         // Add a button to remove this note
-        const removeButton = this.el.appendChild(document.createElement('button'));
-        removeButton.textContent = 'Delete this note'
-        removeButton.classList.add('remove');
+        const removeButton = tools.appendChild(document.createElement('i'));
+        removeButton.classList.add('fi', 'fi-rr-trash', 'remove-icon');
 
         // Listen to when the user wants to remove it
         removeButton.addEventListener('click', () => {

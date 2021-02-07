@@ -18,6 +18,9 @@ window.addEventListener('load', function() {
         // Show the notes
         app.show(Notes, router);
         router.updatePageLinks();
+
+        // Update the last page
+        localStorage.setItem('last-visited', '/');
     });
 
     // Install the new route
@@ -26,6 +29,9 @@ window.addEventListener('load', function() {
         // Show the editor
         app.show(Editor);
         router.updatePageLinks();
+
+        // Update the last page
+        localStorage.setItem('last-visited', '/new');
     });
 
     // Install the single note route
@@ -34,8 +40,11 @@ window.addEventListener('load', function() {
         // Show the editor
         app.show(Editor, params.id);
         router.updatePageLinks();
+
+        // Update the last page
+        localStorage.setItem('last-visited', '/note/'+params.id);
     });
 
     // Resolve the router
-    router.resolve();
+    router.resolve(localStorage.getItem('last-visited') || '/');
 });

@@ -41,7 +41,7 @@ export class App {
         const homeButton = toolbar.appendChild(document.createElement('a'));
         homeButton.classList.add('button');
         homeButton.textContent = 'Home';
-        homeButton.setAttribute('href', '/');
+        homeButton.setAttribute('href', '');
         homeButton.setAttribute('data-navigo', '');
 
         /**

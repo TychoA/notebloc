@@ -1,6 +1,9 @@
 :root
 {
     --font-color: #333;
+    --remove-color: tomato;
+    --icon-size: 1.25em;
+    --font-size: 1em;
 }
 
 body,html
@@ -52,9 +55,27 @@ button:hover
     filter: opacity(0.9);
 }
 
-button.remove
+.remove
 {
-    background-color: tomato;
+    background-color: var(--remove-color);
+}
+
+.tools
+{
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+}
+.remove-icon
+{
+    color: var(--remove-color);
+    cursor: pointer;
+    transition: filter .15s ease-in-out;
+}
+
+.remove-icon:hover
+{
+    filter: brightness(1.5);
 }
 
 a
@@ -114,6 +135,11 @@ a
 .preview:hover
 {
     filter: blur(0);
+}
+
+.fi
+{
+    font-size: var(--icon-size);
 }
 
 input
