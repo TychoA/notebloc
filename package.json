@@ -1,0 +1,25 @@
+{
+  "name": "notebloc",
+  "version": "1.0.0",
+  "description": "Web app for writing notes. The idea behind this is that it allows you to focus on doing one thing only: writing a note. And doing this very easy and quick. For example, a meeting comes up and you want to write notes. Open the application, start writing, and later close it again (maybe export it).",
+  "main": "app.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TychoA/notebloc.git"
+  },
+  "author": "tycho atsma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TychoA/notebloc/issues"
+  },
+  "homepage": "https://github.com/TychoA/notebloc#readme",
+  "dependencies": {
+    "alertifyjs": "^1.13.1",
+    "froala-editor": "^3.2.6-1",
+    "mitt": "^2.1.0",
+    "navigo": "^8.11.0"
+  }
+}
